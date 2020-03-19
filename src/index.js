@@ -14,8 +14,9 @@ import AuthContent2 from './Components/AuthContent2/AuthContent2';
 import OpenContent1 from './Components/OpenContent1/OpenContent1';
 import OpenContent2 from './Components/OpenContent2/OpenContent2';
 import Login from './Components/Login/Login';
+import AppProvider from './AppProvider';
 
-const fakeAuth = {
+export const fakeAuth = {
     isAuthenticated: false,
     authenticate(cb){
         this.isAuthenticated = true;
@@ -40,6 +41,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 
 const routing = (
     <Router>
+		<AppProvider>
       <div>
         <Route exact path="/" component={App} />
         <Route path="/Login" component={Login} />
@@ -48,6 +50,7 @@ const routing = (
         <Route path="/OpenContent1" component={OpenContent1} />
         <Route path="/OpenContent2" component={OpenContent2} />
       </div>
+	  </AppProvider>
     </Router>
   )
 

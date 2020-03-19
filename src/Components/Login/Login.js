@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
 import AppContext from '../../AppContext';
+import {fakeAuth} from '../../index';
 
 export default class Login extends Component {
     constructor(props){
@@ -12,10 +13,9 @@ export default class Login extends Component {
     }
 
     login(event, context){
-        debugger;
         const user = { Name: 'Test User'}
         context.setUser(user);
-        //alert('about to log in');
+        alert('about to log in');
         this.setState({redirectToReferrer:true});
     }
 
@@ -29,15 +29,17 @@ export default class Login extends Component {
         } = this.props.location.state || { from: { pathname: '/'}};
         
         if(redirectToReferrer){
+			fakeAuth.authenticate();
+			console.log(from);
             return (
-                <Redirect to={from} />
+                <Redirect to={from.pathname} />
             )
         }
 
         return (
             <AppContext.Consumer>
                 {context => (
-                    <div>
+					<div>
                         <div>You must log in to view {from.pathname}</div>
                         <button onClick={(e) => this.login(e, context)}>LOGIN</button>
                     </div>
