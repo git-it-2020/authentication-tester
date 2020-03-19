@@ -1,10 +1,11 @@
 import AppContext from './AppContext';
 import React from 'react';
+import fakeAuth from './index';
 
 class AppProvider extends React.Component {
     state = {
         user: {}
-    };
+	};
 
     render() {
         return (
@@ -12,7 +13,7 @@ class AppProvider extends React.Component {
                 value={{
                     user: this.state.user,
                     setUser: user => {
-                        debugger;
+                        // debugger;
                         const stateUser = Object.assign({}, this.state.user);
                         this.setState({
                             user
